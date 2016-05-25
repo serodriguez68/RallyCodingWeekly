@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import * as actions from '../actions';
 
 class UserList extends Component {
-  componentWillMount() {
-    this.props.fetchPhotos();
-  }
-
   renderPhotos() {
     return this.props.photos.map(photo => {
       return (
@@ -33,4 +28,4 @@ function mapStateToProps({ photos }) {
   return { photos }
 }
 
-export default connect(mapStateToProps, actions)(UserList);
+export default connect(mapStateToProps)(UserList);

@@ -1,28 +1,11 @@
-import Firebase from 'firebase';
-import _ from 'lodash';
-import {
-  FETCH_POSTS,
-  DELETE_POST,
-  CREATE_POST
-} from './types';
+import axios from 'axios';
 
-const Posts = new Firebase('https://fbredux.firebaseio.com/');
+export function fetchUsers() {
+  const request = axios.get('http://jsonplaceholder.typicode.com/users');
 
-export function fetchPosts() {
-  return dispatch => {
-    Posts.on('value', snapshot => {
-      dispatch({
-        type: FETCH_POSTS,
-        payload: snapshot.val()
-      });
+  return (dispatch) => {
+    request.then(({data}) => {
+      dispatch({ type: 'FETCH_PROFILES', payload: data })
     });
   };
-}
-
-export function createPost(post) {
-  return dispatch => Posts.push(post);
-}
-
-export function deletePost(key) {
-  return dispatch => Posts.child(key).remove();
 }

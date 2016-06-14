@@ -1,56 +1,33 @@
-import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import PostItem from './post_item';
 
-class App extends Component {
-  state = { post: '' };
-
+export default class App extends Component {
   componentWillMount() {
-    this.props.fetchPosts();
+    this.props.fetchUsers();
   }
 
-  handleInputChange(event) {
-    this.setState({ post: event.target.value });
-  }
-
-  handleFormSubmit(event) {
-    event.preventDefault();
-
-    this.props.createPost(this.state.post)
-  }
-
-  renderPosts() {
-    return _.map(this.props.posts, (post, key) => {
-      return <PostItem key={key} post={post} id={key} />
-    });
+  renderUser({id, name, email}) {
+    return (
+      <li className="list-group-item" key={id}>
+        <span className="label label-defualt label-pill pull-xs-right">
+          <a href={email}>{email}</a>
+        </span>
+        {name}
+      </li>
+    );
   }
 
   render() {
     return (
       <div>
-        <h4>Create a Post</h4>
-        <form onSubmit={this.handleFormSubmit.bind(this)} className="form-inline">
-          <div className="form-group">
-            <input
-              className="form-control"
-              placeholder="Add a post"
-              value={this.state.post}
-              onChange={this.handleInputChange.bind(this)} />
-            <button action="submit" className="btn btn-primary">Create Post</button>
-          </div>
-        </form>
+        <h4>Email Directory</h4>
         <ul className="list-group">
-          {this.renderPosts()}
+          {this.props.users.map(this.renderUser)}
         </ul>
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return { posts: state.posts };
-}
-
-export default connect(mapStateToProps, actions)(App)
+export default connect((state => state), actions)(App);

@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
+//This is your custom selector
 import SelectedPostsSelector from 'selectors/selected_posts';
 
 const SelectedPostsList = (props) => {
@@ -14,10 +16,15 @@ const SelectedPostsList = (props) => {
   );
 };
 
+
+// Wiring up of the SelectedPostsSelector
+// ============================================================================
 const mapStateToProps = state => {
   return {
+    // Pass in the global application state to the selector
     posts: SelectedPostsSelector(state)
   };
 };
 
 export default connect(mapStateToProps)(SelectedPostsList);
+// Wiring up of the SelectedPostsSelector =====================================

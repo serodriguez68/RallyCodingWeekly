@@ -13,23 +13,29 @@ li {
   position: relative;
 }
 
-/* starting state of animation */
+/* starting state of enter animation */
+/* the name of css class maps to transitionName: "fade" in app.js*/
 .fade-enter {
   transform: rotateX(90deg) rotateZ(90deg);
   opacity: 0;
 }
 
-/* end state of animation */
+/* end state of enter animation */
+/* the name of css class maps to transitionName: "fade" in app.js*/
 .fade-enter-active {
   transform: rotateX(0deg) rotateZ(0deg);
   opacity: 1.0;
   transition: .5s ease-in all;
 }
 
+/* starting state of leave animation */
+/* the name of css class maps to transitionName: "fade" in app.js*/
 .fade-leave {
   opacity: 1.0;
 }
 
+/* end state of leave animation */
+/* the name of css class maps to transitionName: "fade" in app.js*/
 .fade-leave-active {
   opacity: 0;
   transition: .5s ease-out all;

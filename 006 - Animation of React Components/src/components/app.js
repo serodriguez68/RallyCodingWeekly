@@ -31,12 +31,18 @@ export default class App extends Component {
   }
 
   render() {
+    // Defines all teh properties for the ReactCSSTransitionGroup component.
+    // They may also be defined on the component itself as props
+    // The tansitionName prop defines how you will need to name the css classes
+    // (take a look at style.css)
     const transitionOptions = {
       transitionName: "fade",
       transitionEnterTimeout: 500,
       transitionLeaveTimeout: 500
     };
 
+    // ReactCSSTransitionGroup is a component like any other.
+    // It is used to add an remove items from lists
     return (
       <div>
         <button onClick={this.onAddClick.bind(this)}>Add</button>

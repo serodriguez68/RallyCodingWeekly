@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+
+// This is to allow containers to be rendered inside the modal and have
+// propper connection to the redux store
 import { store } from '../index';
 import { Provider } from 'react-redux';
 
@@ -20,6 +23,11 @@ class Modal extends Component {
     document.body.removeChild(this.modalTarget);
   }
 
+  // this.props.children area all tags that where originally declared to be
+  // nested inside the modal component
+  //
+  // Provider & store: allow containers to be rendered inside the modal and have
+  // propper connection to the redux store
   _render() {
     ReactDOM.render(
       <Provider store={store}>
@@ -29,6 +37,10 @@ class Modal extends Component {
     );
   }
 
+  // noscript es used as a hack to render nothing AT THE PLACE WHERE THE MODAL
+  // COMPONENT WAS POSITIONED INSIDE THE APP COMPONENT.
+  // We will use a workarund using componentDidMount and _render to put the content
+  // on another position
   render() {
     return <noscript />;
   }
